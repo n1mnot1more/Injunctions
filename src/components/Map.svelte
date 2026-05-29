@@ -537,9 +537,7 @@
 
 	const coveredArea = $derived(
 		hoveredWard?.properties?.covered_area_ha != null
-			? Math.round(
-				hoveredWard.properties.covered_area_ha * 10
-			) / 10
+			? hoveredWard.properties.covered_area_ha 
 			: null
 	);
 
