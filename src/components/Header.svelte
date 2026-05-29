@@ -27,15 +27,12 @@
 
 <header class="header">
 
-	<!-- LOGO -->
-	<div class="wordmark">
-		<a href="{base}/" aria-label="home">
+	<nav class="nav">
+
+		<!-- INLINE SMALL LOGO (NEW) -->
+		<a href="{base}/" class="nav-logo" aria-label="home">
 			{@html wordmark}
 		</a>
-	</div>
-
-	<!-- FIXED NAV -->
-	<nav class="nav">
 
 		{#each nav as item}
 			<button
@@ -57,38 +54,9 @@
 	color: white;
 }
 
-/* WORDMARK */
-
-.wordmark {
-	max-width: 11em;
-
-	margin: 0 auto;
-
-	padding: 28px 0 16px;
-
-	transform: rotate(-3deg);
-
-	opacity: 0.95;
-
-	position: relative;
-	z-index: 10;
-}
-
-.wordmark a {
-	display: block;
-	border: none;
-	color: inherit;
-}
-
-.wordmark a:hover {
-	background: transparent;
-}
-
-/* FIXED NAV */
-
+/* NAV (unchanged except layout support) */
 .nav {
 	position: fixed;
-
 	top: 1.25rem;
 	right: 1.5rem;
 
@@ -101,16 +69,40 @@
 	flex-wrap: wrap;
 }
 
-/* BUTTONS */
+/* NEW: inline logo inside nav */
+.nav-logo {
+	display: flex;
+	align-items: center;
 
+	max-width: 3.2em;
+
+	margin-right: 0.4rem;
+
+	opacity: 0.85;
+
+	transform: rotate(-3deg);
+
+	transition: opacity 0.2s ease;
+}
+
+.nav-logo:hover {
+	opacity: 1;
+}
+
+/* ensure svg scales properly */
+.nav-logo :global(svg) {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* BUTTONS (unchanged) */
 .nav button {
 	background: rgba(18, 12, 34, 0.82);
 
 	backdrop-filter: blur(10px);
 
-	border:
-		1px solid
-		rgba(255,255,255,0.08);
+	border: 1px solid rgba(255,255,255,0.08);
 
 	color: rgba(255,255,255,0.82);
 
@@ -119,16 +111,13 @@
 	letter-spacing: 0.02em;
 	text-transform: uppercase;
 
-	padding:
-		0.5rem
-		0.9rem;
+	padding: 0.5rem 0.9rem;
 
 	border-radius: 999px;
 
 	cursor: pointer;
 
-	box-shadow:
-		0 4px 18px rgba(0,0,0,0.35);
+	box-shadow: 0 4px 18px rgba(0,0,0,0.35);
 
 	transition:
 		transform 0.18s ease,
@@ -137,29 +126,16 @@
 		color 0.18s ease;
 }
 
-/* HOVER */
-
 .nav button:hover {
 	transform: translateY(-1px);
-
-	background:
-		rgba(40, 22, 70, 0.92);
-
-	border-color:
-		rgba(255,255,255,0.16);
-
+	background: rgba(40, 22, 70, 0.92);
+	border-color: rgba(255,255,255,0.16);
 	color: white;
 }
 
-/* ACTIVE */
-
 .nav button.selected {
-	background:
-		rgba(255,255,255,0.10);
-
-	border-color:
-		rgba(252,253,79,0.55);
-
+	background: rgba(255,255,255,0.10);
+	border-color: rgba(252,253,79,0.55);
 	color: #fcfd4f;
 
 	box-shadow:
@@ -167,8 +143,7 @@
 		0 6px 18px rgba(0,0,0,0.35);
 }
 
-/* MOBILE */
-
+/* MOBILE (unchanged) */
 @media (max-width: 900px) {
 
 	.nav {
@@ -189,16 +164,8 @@
 
 	.nav button {
 		font-size: 0.66rem;
-
-		padding:
-			0.45rem
-			0.75rem;
+		padding: 0.45rem 0.75rem;
 	}
-
-	.wordmark {
-		padding-top: 24px;
-	}
-
 }
 
 </style>
