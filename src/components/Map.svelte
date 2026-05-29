@@ -57,7 +57,7 @@ import { base } from "$app/paths";
       context.beginPath();
       path(feature);
       context.fillStyle = colorScale(
-        +feature.properties.total_covered_area_ha || 0
+        +feature.properties.covered_area_ha || 0
       );
       context.fill();
     });
@@ -306,9 +306,9 @@ canvas.style.cursor = "crosshair";
   });
 
   const wardName = $derived(hoveredWard?.properties?.WARD_Name ?? null);
-  const total_covered_area_ha = $derived(
-    hoveredWard?.properties?.total_covered_area_ha != null
-      ? hoveredWard.properties.total_covered_area_ha
+  const covered_area_ha = $derived(
+    hoveredWard?.properties?.covered_area_ha != null
+      ? hoveredWard.properties.covered_area_ha
       : null
   );
   const tipLeft = $derived(tooltipX + 20);
@@ -334,11 +334,11 @@ canvas.style.cursor = "crosshair";
 
       <div>
         in
-        {hovered?.properties?.LAD25NM ?? "Unknown LAD"}
+        {hovered?.properties?.LAD_Name ?? "Unknown LAD"}
       </div>
 
       <div>
-        {total_covered_area_ha ?? "?"}
+        {covered_area_ha ?? "?"}
         hectares injuncted.
       </div>
     </div>
