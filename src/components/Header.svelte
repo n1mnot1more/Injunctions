@@ -4,7 +4,7 @@
 
 	const nav = [
 		{ id: "map", label: "Map" },
-		{ id: "personal-stories", label: "Stories" },
+		{ id: "stories", label: "Stories" },
 		{ id: "resources", label: "Resources" },
 		{ id: "acknowledgements", label: "Credits" }
 	];

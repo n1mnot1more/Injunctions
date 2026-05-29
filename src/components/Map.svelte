@@ -39,9 +39,9 @@ import { base } from "$app/paths";
   const colorToWard = new Map();
 
   const colorScale = d3.scaleThreshold()
-    .domain([0.0001, 5, 20, 100, 300, 500, 1300])
+    .domain([ 0, 5, 20, 100, 300, 500, 1300])
     .range([
-      "#0a061b",
+"#0a061b",
       "#61187a",
       "#b0349a",
       "#e04d79",
@@ -57,7 +57,7 @@ import { base } from "$app/paths";
       context.beginPath();
       path(feature);
       context.fillStyle = colorScale(
-        +feature.properties.covered_area_ha || 0
+        +feature.properties.covered_area_ha || -1
       );
       context.fill();
     });
@@ -338,10 +338,10 @@ const covered_area_ha = $derived(
         {hovered?.properties?.["LAD Name"] ?? "Unknown LAD"}
       </div>
 
-      <div>
-        {covered_area_ha ?? "?"}
-        hectares injuncted.
-      </div>
+<div>
+  {covered_area_ha === -1 ? 0 : (covered_area_ha ?? "?")}
+  hectares injuncted.
+</div>
     </div>
   {/if}
 </div>
