@@ -305,12 +305,13 @@ engwal = topojson.feature(engwalTopo, engwalTopo.objects[Object.keys(engwalTopo.
 canvas.style.cursor = "crosshair";
   });
 
-  const wardName = $derived(hoveredWard?.properties?.WARD_Name ?? null);
-  const covered_area_ha = $derived(
-    hoveredWard?.properties?.covered_area_ha != null
-      ? hoveredWard.properties.covered_area_ha
-      : null
-  );
+const wardName = $derived(hoveredWard?.properties?.WARD_Name ?? null);
+
+const covered_area_ha = $derived(
+  hoveredWard?.properties?.covered_area_ha != null
+    ? Math.round(hoveredWard.properties.covered_area_ha * 10) / 10
+    : null
+);
   const tipLeft = $derived(tooltipX + 20);
   const tipTop = $derived(tooltipY - 10);
 </script>
@@ -334,7 +335,7 @@ canvas.style.cursor = "crosshair";
 
       <div>
         in
-        {hovered?.properties?.LAD_Name ?? "Unknown LAD"}
+        {hovered?.properties?.LAD Name ?? "Unknown LAD"}
       </div>
 
       <div>
