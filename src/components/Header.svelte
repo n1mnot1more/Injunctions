@@ -4,7 +4,7 @@
 
 	const nav = [
 		{ id: "map", label: "Map" },
-		{ id: "stories", label: "Stories" },
+		{ id: "personal-stories", label: "Stories" },
 		{ id: "resources", label: "Resources" },
 		{ id: "acknowledgements", label: "Credits" }
 	];
@@ -15,20 +15,28 @@
 		active = id;
 
 		const el = document.getElementById(id);
+
 		if (!el) return;
 
-		el.scrollIntoView({ behavior: "smooth", block: "start" });
+		el.scrollIntoView({
+			behavior: "smooth",
+			block: "start"
+		});
 	}
 </script>
 
 <header class="header">
+
+	<!-- LOGO -->
 	<div class="wordmark">
 		<a href="{base}/" aria-label="home">
 			{@html wordmark}
 		</a>
 	</div>
 
+	<!-- FIXED NAV -->
 	<nav class="nav">
+
 		{#each nav as item}
 			<button
 				class:selected={active === item.id}
@@ -37,7 +45,9 @@
 				{item.label}
 			</button>
 		{/each}
+
 	</nav>
+
 </header>
 
 <style>
@@ -45,16 +55,23 @@
 .header {
 	background: #0a061b;
 	color: white;
-	padding-bottom: 6px;
 }
 
 /* WORDMARK */
+
 .wordmark {
 	max-width: 11em;
+
 	margin: 0 auto;
+
 	padding: 28px 0 16px;
+
 	transform: rotate(-3deg);
+
 	opacity: 0.95;
+
+	position: relative;
+	z-index: 10;
 }
 
 .wordmark a {
@@ -63,104 +80,13 @@
 	color: inherit;
 }
 
-/* NAV CONTAINER */
-.nav {
-	display: flex;
-	justify-content: center;
-	gap: 8px;
-	padding: 0 16px 14px;
-	flex-wrap: wrap;
-}
-
-/* BUTTON BASE */
-.nav button {
-	background: rgba(255, 255, 255, 0.03);
-	border: 1px solid rgba(255, 255, 255, 0.12);
-	color: rgba(255, 255, 255, 0.75);
-
-	font-size: 12px;
-	letter-spacing: 0.02em;
-	text-transform: uppercase;
-
-	padding: 6px 12px;
-	border-radius: 999px;
-
-	cursor: pointer;
-
-	transition:
-		background 0.2s ease,
-		border-color 0.2s ease,
-		transform 0.2s ease,
-		color 0.2s ease;
-}
-
-/* HOVER */
-.nav button:hover {
-	background: rgba(255, 255, 255, 0.06);
-	border-color: rgba(255, 255, 255, 0.25);
-	color: white;
-	transform: translateY(-1px);
-}
-
-/* ACTIVE STATE */
-.nav button.selected {
-	background: rgba(255, 255, 255, 0.10);
-	border-color: rgba(252, 253, 79, 0.55);
-	color: #fcfd4f;
-
-	box-shadow:
-		0 0 0 1px rgba(252, 253, 79, 0.15),
-		0 6px 18px rgba(0, 0, 0, 0.35);
-}
-
-/* MOBILE */
-@media (max-width: 900px) {
-	.nav {
-		gap: 6px;
-	}
-
-	.nav button {
-		font-size: 11px;
-		padding: 5px 10px;
-	}
-}
-
-</style>
-<style>
-
-header {
-	background: #0a061b;
-	position: relative;
-}
-
-/* LOGO */
-
-.wordmark {
-	max-width: 11em;
-
-	margin: 0 auto;
-
-	padding: 32px 0;
-
-	transform: rotate(-4deg);
-
-	position: relative;
-	z-index: 5;
-}
-
-.wordmark a {
-	border: none;
-	display: block;
-	color: var(--color-fg);
-}
-
 .wordmark a:hover {
-	background-color: transparent;
+	background: transparent;
 }
 
 /* FIXED NAV */
 
-.jump-nav {
+.nav {
 	position: fixed;
 
 	top: 1.25rem;
@@ -170,24 +96,15 @@ header {
 
 	display: flex;
 	align-items: center;
-	gap: 0.55rem;
+	gap: 0.5rem;
+
+	flex-wrap: wrap;
 }
 
-/* PUDDING STYLE BUTTONS */
+/* BUTTONS */
 
-.jump-nav a {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-
-	padding:
-		0.5rem
-		0.9rem;
-
-	border-radius: 999px;
-
-	background:
-		rgba(18, 12, 34, 0.82);
+.nav button {
+	background: rgba(18, 12, 34, 0.82);
 
 	backdrop-filter: blur(10px);
 
@@ -195,12 +112,20 @@ header {
 		1px solid
 		rgba(255,255,255,0.08);
 
-	color: white;
-	text-decoration: none;
+	color: rgba(255,255,255,0.82);
 
 	font-size: 0.72rem;
 	font-weight: 600;
 	letter-spacing: 0.02em;
+	text-transform: uppercase;
+
+	padding:
+		0.5rem
+		0.9rem;
+
+	border-radius: 999px;
+
+	cursor: pointer;
 
 	box-shadow:
 		0 4px 18px rgba(0,0,0,0.35);
@@ -208,10 +133,13 @@ header {
 	transition:
 		transform 0.18s ease,
 		background 0.18s ease,
-		border-color 0.18s ease;
+		border-color 0.18s ease,
+		color 0.18s ease;
 }
 
-.jump-nav a:hover {
+/* HOVER */
+
+.nav button:hover {
 	transform: translateY(-1px);
 
 	background:
@@ -219,13 +147,31 @@ header {
 
 	border-color:
 		rgba(255,255,255,0.16);
+
+	color: white;
+}
+
+/* ACTIVE */
+
+.nav button.selected {
+	background:
+		rgba(255,255,255,0.10);
+
+	border-color:
+		rgba(252,253,79,0.55);
+
+	color: #fcfd4f;
+
+	box-shadow:
+		0 0 0 1px rgba(252,253,79,0.15),
+		0 6px 18px rgba(0,0,0,0.35);
 }
 
 /* MOBILE */
 
 @media (max-width: 900px) {
 
-	.jump-nav {
+	.nav {
 		top: auto;
 		bottom: 1rem;
 
@@ -234,14 +180,15 @@ header {
 
 		transform: translateX(-50%);
 
-		flex-wrap: wrap;
 		justify-content: center;
 
 		max-width: calc(100vw - 2rem);
+
+		gap: 0.4rem;
 	}
 
-	.jump-nav a {
-		font-size: 0.68rem;
+	.nav button {
+		font-size: 0.66rem;
 
 		padding:
 			0.45rem
