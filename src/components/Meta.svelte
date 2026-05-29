@@ -1,7 +1,7 @@
 <script>
 	let {
-		title = "Title TK",
-		description = "Description TK",
+		title = "N1M",
+		description = "Not 1 More",
 		url = "https://pudding.cool",
 		keywords = "",
 		preloadFont = []

@@ -1,4 +1,5 @@
 import adapterStatic from "@sveltejs/adapter-static";
+import adapter from '@sveltejs/adapter-static';
 import { sveltePreprocess } from "svelte-preprocess";
 import autoprefixer from "autoprefixer";
 
