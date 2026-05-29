@@ -9,12 +9,16 @@ const preprocess = sveltePreprocess({
 });
 
 const config = {
-	compilerOptions: {
-		runes: true
-	},
-	preprocess,
 	kit: {
-		adapter: adapterStatic({ strict: false })
+		adapter: adapter({
+			pages: 'build',
+			assets: 'build',
+			fallback: '404.html'
+		}),
+
+		paths: {
+			base: dev ? '' : '/Injunctions'
+		}
 	}
 };
 
