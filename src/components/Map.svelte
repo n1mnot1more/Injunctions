@@ -335,7 +335,7 @@ const covered_area_ha = $derived(
 
       <div>
         in
-        {hovered?.properties?.LAD Name ?? "Unknown LAD"}
+        {hovered?.properties?.["LAD Name"] ?? "Unknown LAD"}
       </div>
 
       <div>
